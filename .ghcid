@@ -1,1 +1,1 @@
---warnings -T ":main render"
+--warnings -T ":main render --format gif"
