@@ -37,6 +37,7 @@ executable anima
     , mtl
     , neat-interpolation
     , profunctors
+    , reanimate
     , relude
     , shower
     , tagged
@@ -44,7 +45,6 @@ executable anima
     , time
     , unliftio
     , with-utf8
-    , reanimate
 
   mixins:
     base hiding (Prelude),
