@@ -1,6 +1,6 @@
 # anima
 
-I want to visualize and animate my thoughts and ideas. Algebraically.
+I want to visualize and animate my thoughts and ideas. This repository uses `reanimate` (see [overview](https://reanimate.readthedocs.io/en/latest/glue_tut/)).
 
 ## Interactive creation
 
