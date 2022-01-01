@@ -38,6 +38,7 @@
             overrides = self: super: with pkgs.haskell.lib; {
               # Use callCabal2nix to override Haskell dependencies here
               # cf. https://tek.brick.do/K3VXJd8mEKO7
+		reanimate-svg = dontCheck super.reanimate-svg;
             };
             modifier = drv:
               pkgs.haskell.lib.addBuildTools drv
