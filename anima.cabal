@@ -38,6 +38,7 @@ executable anima
     , neat-interpolation
     , profunctors
     , reanimate
+    , reanimate-svg
     , relude
     , shower
     , tagged

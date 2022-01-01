@@ -29,6 +29,21 @@
                 ormolu = workaround140774 super.ormolu;
               };
           };
+        withReanimateDeps = drv:
+          drv.overrideAttrs
+            (
+              oa: {
+                # https://github.com/reanimate/reanimate/blob/d22af8dc38d867122e7d01b328f6bc3ae88759fc/default.nix#L48-L57
+                nativeBuildInputs = oa.nativeBuildInputs ++ [
+                  pkgs.zlib.dev
+                  pkgs.zlib.out
+                  pkgs.gmp
+                  pkgs.gnome3.librsvg
+                  pkgs.ffmpeg
+                ];
+              }
+            );
+
         project = returnShellEnv:
           pkgs.haskellPackages.developPackage {
             inherit returnShellEnv;
@@ -38,14 +53,12 @@
             overrides = self: super: with pkgs.haskell.lib; {
               # Use callCabal2nix to override Haskell dependencies here
               # cf. https://tek.brick.do/K3VXJd8mEKO7
-              reanimate-svg = dontCheck super.reanimate-svg;
-              reanimate = dontCheck super.reanimate;
+              reanimate-svg = withReanimateDeps (dontCheck super.reanimate-svg);
+              reanimate = withReanimateDeps (dontCheck super.reanimate);
             };
             modifier = drv:
               pkgs.haskell.lib.addBuildTools drv
-                (with (if system == "aarch64-darwin"
-                then m1MacHsBuildTools
-                else pkgs.haskellPackages); [
+                (with (if system == "aarch64-darwin" then m1MacHsBuildTools else pkgs.haskellPackages); [
                   # Specify your build/dev dependencies here. 
                   cabal-fmt
                   cabal-install
@@ -64,3 +77,4 @@
         devShell = project true;
       });
 }
+
