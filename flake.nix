@@ -29,6 +29,17 @@
                 ormolu = workaround140774 super.ormolu;
               };
           };
+        # Build ffmpeg with SVG support (which is missing in nixpkgs)
+        ffmpeg = pkgs.ffmpeg.overrideAttrs (
+          oa: {
+            buildInputs = oa.buildInputs ++ [
+              pkgs.gnome3.librsvg
+            ];
+            configureFlags = oa.configureFlags ++ [
+              "--enable-librsvg"
+            ];
+          }
+        );
         withReanimateDeps = drv:
           drv.overrideAttrs
             (
@@ -39,7 +50,7 @@
                   pkgs.zlib.out
                   pkgs.gmp
                   pkgs.gnome3.librsvg
-                  pkgs.ffmpeg
+                  ffmpeg
                 ];
               }
             );
