@@ -1,7 +1,7 @@
 {
-  description = "haskell-template's description";
+  description = "anima's description";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/2df15ba83d0510a56f2583fd3481723835acb5a1";
+    nixpkgs.url = "github:nixos/nixpkgs/6f05cfdb1e78d36c0337516df674560e4b51c79b";
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -32,7 +32,7 @@
         project = returnShellEnv:
           pkgs.haskellPackages.developPackage {
             inherit returnShellEnv;
-            name = "haskell-template";
+            name = "anima";
             root = ./.;
             withHoogle = false;
             overrides = self: super: with pkgs.haskell.lib; {
