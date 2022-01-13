@@ -78,7 +78,7 @@
                   haskell-language-server
                   ormolu
                   pkgs.nixpkgs-fmt
-                  ffmpeg
+                  pkgs.texlive.combined.scheme-full
                 ]);
           };
       in
