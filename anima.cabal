@@ -39,6 +39,7 @@ executable anima
     , profunctors
     , reanimate >= 1.1.4.0
     , reanimate-svg
+    , JuicyPixels
     , relude
     , shower
     , tagged
