@@ -1,7 +1,7 @@
 {
   description = "anima's description";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/6f05cfdb1e78d36c0337516df674560e4b51c79b";
+    nixpkgs.url = "github:nixos/nixpkgs/b458e5133fba2c873649f071f7a8dfeae52ebd17";
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -40,11 +40,12 @@
             ];
           }
         );
+        # Patch nativeBuildInputs for reanimate libraries.
+        # Ref: https://github.com/reanimate/reanimate/blob/d22af8dc38d867122e7d01b328f6bc3ae88759fc/default.nix#L48-L57
         withReanimateDeps = drv:
           drv.overrideAttrs
             (
               oa: {
-                # https://github.com/reanimate/reanimate/blob/d22af8dc38d867122e7d01b328f6bc3ae88759fc/default.nix#L48-L57
                 nativeBuildInputs = oa.nativeBuildInputs ++ [
                   pkgs.zlib.dev
                   pkgs.zlib.out
@@ -77,6 +78,7 @@
                   haskell-language-server
                   ormolu
                   pkgs.nixpkgs-fmt
+                  ffmpeg
                 ]);
           };
       in
