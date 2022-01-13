@@ -37,7 +37,7 @@ executable anima
     , mtl
     , neat-interpolation
     , profunctors
-    , reanimate
+    , reanimate >= 1.1.4.0
     , reanimate-svg
     , relude
     , shower
